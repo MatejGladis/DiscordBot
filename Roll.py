@@ -89,7 +89,6 @@ def Calc(Expression):
 #Core of the program
 def Main(Expression):
     Expression = str(Expression)
-    Expression = Expression[5:]
     Expression = AddSpaces(Expression)
     Expression = Calc(Expression)
     return Expression
