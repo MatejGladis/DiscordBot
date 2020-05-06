@@ -20,10 +20,10 @@ async def ping(ctx):
     await ctx.send(f"Pong! {round(client.latency * 1000)}ms")     
 
 @client.command(aliases = ["r"])
-async def roll(ctx, *, dices):
+async def roll(dices):
     a = dices.split("d")
-    x = int(a[0])
-    if IsValid(x) == Flase:
+    x = a[0]
+    if IsValid(x) == False:
         x = 1
     y = int(a[1])
     b = []
