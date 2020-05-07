@@ -13,6 +13,17 @@ def IsValid(Expression):
 
 # Function AddSpaces isolate numbers and characters form each other
 def AddSpaces(Expression):
+
+    #plus checker
+    for i in range(len(Expression)):
+        if i > 1 and IsValid(Expression[i]) == True and Expression[i-1] == " ":
+            a = 0
+            for j in range (i):
+                if Expression[i-j] == "+" or Expression[i-j] == "d" or Expression[i-j] == "D":
+                    a=1
+                if Expression[i-j] != "+" and Expression[i-j] != "d" and Expression[i-j] != "D" and Expression[i-j] != "D" and Expression[i-j] != " " and a == 0 and j != 0:
+                    return False
+
     # SpaceRamover creates ramoves spaces for the Expression in for i cyclus
     SpaceRamover = Expression.split(" ")
     Expression = ""
@@ -66,8 +77,8 @@ def Calc(Expression):
                 FinalSum += int(ExpressionList[Positon])
 
             # for dices
-            elif ExpressionList[Positon + 1] == "d" or ExpressionList[Positon + 1] == "D" and IsValid(ExpressionList[Positon + 2]) == False:
-                return False
+            #elif ExpressionList[Positon + 1] == "d" or ExpressionList[Positon + 1] == "D" and IsValid(ExpressionList[Positon + 2]) == False:
+                #return False
             elif ExpressionList[Positon + 1] == "d" or ExpressionList[Positon + 1] == "D" and IsValid(ExpressionList[Positon + 2]) == True:
 
                 for i in range(int(ExpressionList[Positon])):
@@ -107,9 +118,11 @@ def Calc(Expression):
     return FinalList, FinalSum
 
 
-# Core of the program
+#Core of the program
 def Main(Expression):
     Expression = str(Expression)
     Expression = AddSpaces(Expression)
+    if Expression == False:
+        return False
     Expression = Calc(Expression)
     return Expression
